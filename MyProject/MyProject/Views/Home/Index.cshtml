@@ -1,0 +1,131 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Index</title>
+
+    <style>
+        .tableData {
+            border-left: solid 1px #D8C3C3;
+            border-top: solid 1px #D8C3C3;
+        }
+
+
+
+            .tableData tr {
+            }
+
+
+
+            .tableData td, .tableData th {
+                border-right: solid 1px #D8C3C3;
+                border-bottom: solid 1px #D8C3C3;
+                text-align: left;
+                padding: 5px;
+            }
+
+
+
+            .tableData td {
+            }
+
+
+
+            .tableData th {
+                background-color: #FAFAFA;
+                padding: 7px 5px;
+                border-bottom-color: #9C9C9C;
+            }
+
+
+
+        .odd {
+            background-color: #f3f3f3;
+        }
+
+
+
+        .even {
+            background-color: #ffffff;
+        }
+    </style>
+
+
+
+</head>
+
+<body ng-app="Homeapp">
+
+    <div ng-controller="HomeController">
+        
+        <table >
+            @*<input type="text" ng-model="txtSearch" ng-keydown="GetSearchData()" />*@
+            <tr ng-repeat="(k,v) in record | groupBy:'PostID'">
+
+                <td>
+                    <table class="tableData">
+                        <tr ng-repeat="opt in v | orderBy:'CommentID'">
+                            <td>
+                                <table>
+                                    <tr>
+                                        <th ng-if="$index==0">
+                                            {{v[0].PostDetail}}
+                                        </th>
+                                        <th ng-if="$index==0">
+                                            {{v[0].PostUserName}}
+                                        </th>
+                                        <th ng-if="$index==0">
+                                            {{v[0].PostDateInSt}}
+                                        </th>
+                                        <th colspan="2" ng-if="$index==0">
+                                            {{v[0].CommentNo}}
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{opt.CommentDetails}}
+                                        </td>
+                                        <td>
+                                            {{opt.CommentUserName}}
+                                        </td>
+                                        <td>
+                                            {{opt.CommentDateInSt}}
+                                        </td>
+                                        <td>
+                                            {{opt.LikeNo}}
+                                        </td>
+                                        <td>
+                                            {{opt.DislikeNo}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+
+
+    </div>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/AngularController/HomeAngular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.16/angular-filter.js"> </script>
+    
+</body>
+
+</html>
+
